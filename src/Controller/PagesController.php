@@ -57,4 +57,13 @@ public function login ()
 
 ]);
 }
+#[Route('/register',name:'app_register')]
+public function register ()
+{
+    return $this->render('registration\register.html.twig',
+[
+'controller_name'=>'PagesController',
+
+]);
+}
     }

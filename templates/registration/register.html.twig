@@ -3,7 +3,43 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<style>
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  line-height: 30px;
+  color: #000000;
+
+}
+	.ff {
+        background: transparent;
+      
+			padding: 50px;
+			border-radius: 80px;
+			margin: 50px auto;
+			width: 60%;
+			box-shadow: 0 0 10px rgba(10, 1, 1, 0.5);
+            
+            position: absolute;
+             top: 150px;
+             left: 50%;
+              transform: translateX(-50%);
+		}
+.btn{
+     cursor: pointer;
+  width: 100%;
+  border: none;
+  background: #b6965a;
+  color: #0c0303;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px; 
+}
+
+</style> 
+<center > <div class="ff" > 
+    <h1>Register</h1> 
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
@@ -12,6 +48,8 @@
         }) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">sign in</button>
     {{ form_end(registrationForm) }}
+    </center > 
+    </div> 
 {% endblock %}

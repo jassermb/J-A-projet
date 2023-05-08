@@ -1,30 +1,84 @@
 {% extends 'base.html.Twig' %}
 
 {% block body %}
+<style>
+ </style> 
+<script>
+  function submitForm() { 
+    // récupérer le formulaire
+    var form = document.getElementById("monFormulaire");
+    
+    // vérifier que le formulaire est valide
+    if (form.checkValidity()) {
+      // soumettre le formulaire
+      form.submit();
+    }
+  }
+</script>
+<script>
+  function createUser() {
+    // récupérer les valeurs des champs de formulaire
+    var Email = document.getElementById("inputEmail4").value;
+    var Passwor = document.getElementById("inputPassword4").value;
+    var nom = document.getElementById("inputAddress").value;
+    var prenom = document.getElementById("inputAddress2").value;
+     var sex = document.getElementById("inputState").value;
+      var city = document.getElementById("inputCity").value;
+  
+    // créer un objet utilisateur avec les valeurs des champs de formulaire
+    var user = {
+      Email: inputEmail4,
+      password:inputPassword4,
+      nom:inputAddress,
+      prenom:inputAddress2,
+      sex:inputState,
+      city:inputCity,
+   
+    };
+    
+    // envoyer l'objet utilisateur à votre API ou à votre backend pour le stocker en base de données
+    // (utilisez AJAX ou une méthode similaire pour effectuer une requête asynchrone)
+    // ...
+        $.ajax({
+      url: "http://localhost/phpmyadmin/index.php?route=/database/structure&db=database1",
+      type: "POST",
+      data: JSON.stringify(user),
+      contentType: "application/json",
+      success: function(data) {
+        // traitement des données de réponse (optionnel)
+        console.log("Utilisateur créé avec succès !");
+      },
+      error: function(xhr, status, error) {
+        // traitement des erreurs (optionnel)
+        console.error("Erreur lors de la création de l'utilisateur : " + error);
+      }
+    });
+  
+  }
+</script>
 
-
-<form>
+<form methode="post" id="monFormulaire">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <input type="email" class="form-control" id="inputEmail4" required >
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <input type="password" class="form-control" id="inputPassword4" required>
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress">First name</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="Your first name ">
+    <input type="text" class="form-control" id="inputAddress" placeholder="Your first name " required>
   </div>
   <div class="form-group">
     <label for="inputAddress2">Last name </label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Your last name ">
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Your last name "required>
   </div>
   <div class="form-group col-md-4">
       <label for="inputState">sex</label>
-      <select id="inputState" class="form-control">
+      <select id="inputState" class="form-control" required>
         <option selected>Male</option>
         <option>Women</option>
       </select>
@@ -32,7 +86,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="text" class="form-control" id="inputCity" required >
     </div>
     
     
@@ -40,11 +94,12 @@
   <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
+      <label class="form-check-label" for="gridCheck" required>
         Check me out
       </label>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <button type="submit" class="btn btn-primary" onclick="submitForm();createUser()" >Sign in</button>
 </form>
+
 {% endblock %}
